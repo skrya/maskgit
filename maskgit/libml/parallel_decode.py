@@ -151,7 +151,7 @@ def decode(inputs,
     # one and for the next iteration
     mask_len = jnp.maximum(
         1,
-        jnp.minimum(jnp.sum(unknown_map, axis=-1, keepdims=True) - 1, mask_len))
+        jnp.minimum(jnp.sum(unknown_map, axis=-1, keepdims=True) - 1, mask_len)).astype('int32') 
 
     # Adds noise for randomness
     rng, choice_rng = jax.random.split(rng)
